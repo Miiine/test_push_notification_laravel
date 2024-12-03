@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,12 @@ Route::get('member', [MemberController::class, 'dashboard'])
 Route::get('admin', [AdminController::class, 'dashboard'])
     ->name('admin.dashboard')
     ->middleware(['auth', isAdmin::class]);
+
+
+    Route::get('pusher', function () {
+        return view('pusher');
+    });
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('member/notification', [NotificationController::class, 'index'])->name('member.notifications');
+});

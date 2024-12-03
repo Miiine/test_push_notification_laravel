@@ -21,6 +21,23 @@
         </style>
     </head>
     <body class="antialiased">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+        <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+
+        <script>
+            @if(session('logout_message'))
+                var message = @json(session('logout_message'));
+                toastr.success(message, 'Logout Successful', {
+                    timeOut: 5000,
+                    extendedTimeOut: 15000,
+                    closeButton: true,
+                    progressBar: true
+                });
+            @endif
+        </script>
+
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
